@@ -1,9 +1,15 @@
 #include <Arduino.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <Adafruit_GFX.h>
+#include <RTClib.h>
+#include "Adafruit_LEDBackpack.h"
+#include "DHT.h"
 
 void setup() {
-  // put your setup code here, to run once:
+
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
 }
