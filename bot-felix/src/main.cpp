@@ -1,7 +1,6 @@
-#include <DisplayManagement.hpp>
+#include "setup.cpp"
 
-DisplayManagement displayManagement;
 
 void loop() {
-  displayManagement.displayText("Header", "longText");
+  displayText("Header", "longText");
 }

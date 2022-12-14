@@ -5,6 +5,8 @@
 #include "Adafruit_LEDBackpack.h"
 #include "DHT.h"
 
+#include <DisplayManagement.cpp>
+
 //Knopf-Pins: 
 const int buttonStart = 32;//2
 const int buttonWiederhohlungen = 33;//3
@@ -39,7 +41,6 @@ String lernAnzahl;
 
 
 Adafruit_BicolorMatrix matrix = Adafruit_BicolorMatrix();
-LiquidCrystal_I2C lcd(0x27, 20, 4);
 DHT dht(dhtPin, DHT11);
 RTC_DS1307 rtc;
 
@@ -58,7 +59,6 @@ void setup() {
 
   matrix.begin(0x70);  
   matrix.setRotation(3);
-  
 
   lcd.init();
   lcd.backlight();
