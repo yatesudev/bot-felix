@@ -1,32 +1,32 @@
 #include "TiltManager.hpp"
 #include "RGBManager.cpp"
 
-bool returnVal;
+bool TILTMANAGER_returnVal;
 
 //Eine Funktion welche bei Aufruf reagiert, je nach dem ob der Lernbot steht oder liegt
-bool readNeigung(const int tilt){
-  bool currentNeigung = digitalRead(tilt);
-  unsigned long neigung_currentTime = millis();
+bool readTilt(const int tiltVal){
+  bool currentTilt = digitalRead(tiltVal);
+  unsigned long tilt_currentTime = millis();
 
 
-  if(neigung_currentTime - neigungsZeit > 2000){
+  if(tilt_currentTime - tiltsTime > 2000){
      
-       if(currentNeigung){
-        //in diesem Fall "steht" der Bot/Neigungssensor
+       if(currentTilt){
+        //in diesem Fall "steht" der Bot/Tiltssensor
         //Serial.println("Ich stehe!");
         setRGB(0, 20, 0);
         //delay(500);
-        returnVal = false;
+        TILTMANAGER_returnVal = false;
         } else {
-        //in diesem Fall "liegt" der Bot/Neigungssensor
+        //in diesem Fall "liegt" der Bot/Tiltssensor
         //Serial.println("Ich liege!");
         setRGB(100, 50, 0);
         //delay(500);
-        returnVal = true;
+        TILTMANAGER_returnVal = true;
        }
-       neigung = currentNeigung;
+       TILTMANAGER_tilt = currentTilt;
     
-    neigungsZeit = neigung_currentTime;
+    tiltsTime = tilt_currentTime;
   }
-    return returnVal;
+    return TILTMANAGER_returnVal;
 }
