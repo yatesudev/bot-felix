@@ -1,13 +1,16 @@
-#include <setup.cpp>
+#include <FelixEngine.cpp>
+
+
+int repeatsCount = 0;
 
 void loop() {
 
-
-  displayText("Header", "longText");
+  if(isBotSleeping()) {
+    Routine::Sleep();
+  } else {
+    Routine::AwaitInput();
+    if (isButtonRightEarPressed() || repeatsCount > 0) {
+      setupLearningPhase(repeatsCount);
+    }
+  }
 }
-
-
-bool isBotSleeping() {
-  return readTilt(PIN_tilt);
-}
-
