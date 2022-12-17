@@ -5,6 +5,8 @@
 
 #include <TiltManager.cpp>
 
+#include <vector>
+
 //#include <Wire.h>
 //#include <Adafruit_GFX.h>
 
@@ -42,7 +44,6 @@ void setup() {
   dht.begin();
 
 }
-
 
 //Setup Getters for returning the PIN values 
 
