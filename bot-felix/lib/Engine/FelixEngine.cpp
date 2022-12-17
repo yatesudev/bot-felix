@@ -40,15 +40,17 @@ using namespace Utility;
 namespace Routine {
 
   //StartUP Routine
-  unsigned long StartUp_time_now = millis();
   bool StartUp(){
-    setEmoji(SMILE);
-    displayText("Felix:", "Yoooo!");
+    unsigned long StartUp_time_now = millis();
+    while (true) {
+      setEmoji(SMILE);
+      displayText("Felix:", "Yoooo!");
 
-    if ((unsigned long)(millis() - StartUp_time_now)> 3000) {
-      return true;
-    } else {
-      return false;
+      if ((unsigned long)(millis() - StartUp_time_now)> 3000) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 

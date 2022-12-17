@@ -8,14 +8,14 @@ void loop() {
 
   //Routine::StartUp();
 
-  while (Routine::StartUp()) {
-    if(isBotSleeping()) {
-      Routine::Sleep();
-    } else {
-      Routine::AwaitInput();
-      if (isButtonRightEarPressed() || repeatsCount > 0) {
-        setupLearningPhase(repeatsCount);
-      }
-    }    
-  }
+  Routine::StartUp();
+
+  if(isBotSleeping()) {
+    Routine::Sleep();
+  } else {
+    Routine::AwaitInput();
+    if (isButtonRightEarPressed() || repeatsCount > 0) {
+      setupLearningPhase(repeatsCount);
+    }
+  }    
 }
