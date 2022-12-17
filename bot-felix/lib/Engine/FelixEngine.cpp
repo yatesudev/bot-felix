@@ -40,17 +40,22 @@ using namespace Utility;
 namespace Routine {
 
   //StartUP Routine
+  bool startUP_isDone = false;
   bool StartUp(){
-    unsigned long StartUp_time_now = millis();
-    while (true) {
-      setEmoji(SMILE);
-      displayText("Felix:", "Yoooo!");
-
-      if ((unsigned long)(millis() - StartUp_time_now)> 3000) {
-        return true;
-      } else {
-        return false;
+    if (!startUP_isDone) {
+      unsigned long StartUp_time_now = millis();
+      while (true) {
+        setEmoji(SMILE);
+        displayText("Felix:", "Yoooo!");
+    
+        if ((unsigned long)(millis() - StartUp_time_now)> 3000) {
+          startUP_isDone = true;
+          break;
+        }
       }
+      return false;
+    } else {
+      return true; 
     }
   }
 
