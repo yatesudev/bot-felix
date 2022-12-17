@@ -30,12 +30,19 @@ namespace Utility {
     }
   }
   
-
+  void DebugComponents(){
+    Serial.println(readTilt(PIN_tilt));
+  }
 }
 
 using namespace Utility;
 
 namespace Routine {
+  void StartUp(){
+    setEmoji(SMILE);
+    displayText("Felix:", "Yoooo!");
+  }
+
   void Sleep(){
     setEmoji(SLEEP);
     displayText("Felix:", "zZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZz");

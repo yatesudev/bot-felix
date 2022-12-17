@@ -1,10 +1,12 @@
 #include <FelixEngine.cpp>
 
-
 int repeatsCount = 0;
 
 void loop() {
 
+  DebugComponents();
+
+  //Routine::StartUp();
   if(isBotSleeping()) {
     Routine::Sleep();
   } else {
