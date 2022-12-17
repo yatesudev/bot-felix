@@ -41,14 +41,14 @@ namespace Routine {
 
   //StartUP Routine
   bool startUP_isDone = false;
-  bool StartUp(){
+  bool StartUp(int time){
     if (!startUP_isDone) {
       unsigned long StartUp_time_now = millis();
       while (true) {
         setEmoji(SMILE);
         displayText("Felix:", "Yoooo!");
     
-        if ((unsigned long)(millis() - StartUp_time_now)> 3000) {
+        if ((unsigned long)(millis() - StartUp_time_now)> time) {
           startUP_isDone = true;
           break;
         }
