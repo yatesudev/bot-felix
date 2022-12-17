@@ -7,12 +7,15 @@ void loop() {
   DebugComponents();
 
   //Routine::StartUp();
-  if(isBotSleeping()) {
-    Routine::Sleep();
-  } else {
-    Routine::AwaitInput();
-    if (isButtonRightEarPressed() || repeatsCount > 0) {
-      setupLearningPhase(repeatsCount);
-    }
+
+  while (Routine::StartUp()) {
+    if(isBotSleeping()) {
+      Routine::Sleep();
+    } else {
+      Routine::AwaitInput();
+      if (isButtonRightEarPressed() || repeatsCount > 0) {
+        setupLearningPhase(repeatsCount);
+      }
+    }    
   }
 }

@@ -38,16 +38,27 @@ namespace Utility {
 using namespace Utility;
 
 namespace Routine {
-  void StartUp(){
+
+  //StartUP Routine
+  unsigned long StartUp_time_now = millis();
+  bool StartUp(){
     setEmoji(SMILE);
     displayText("Felix:", "Yoooo!");
+
+    if ((unsigned long)(millis() - StartUp_time_now)> 3000) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
+  //StartUP Routine
   void Sleep(){
     setEmoji(SLEEP);
     displayText("Felix:", "zZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZz");
   }
 
+  //StartUP Routine
   void AwaitInput(){
     setEmoji(HAPPY);
     displayText("Felix:", "Bro, Please do something.");
