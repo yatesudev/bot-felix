@@ -20,9 +20,11 @@ namespace Utility {
   }
 
   void setupLearningPhase(int &val) {
-    displayText("Setup Learning:", "Repeats: "+val);
+    String outputString = "Repeats: " + String(val); //converts int to string, so it can be displayed
+    displayText("Setup Learning:", outputString); //
     if (isButtonRightEarPressed()) {
       val++;
+      Serial.println(val);
       delay(500);
       if (val > 10) {
         val = 0;
@@ -91,6 +93,7 @@ namespace ComponentsUtility{
 namespace Routine {
 
   //StartUP Routine
+  String CurrentRoutine;
   bool startUP_isDone = false;
   bool StartUp(int time){
     if (!startUP_isDone) {
@@ -98,7 +101,8 @@ namespace Routine {
       while (true) {
         setEmoji(SMILE);
         displayText("Felix:", "Yoooo!");
-    
+        CurrentRoutine = "StartUp";
+
         if ((unsigned long)(millis() - StartUp_time_now) > time) {
           startUP_isDone = true;
           break;
@@ -112,12 +116,14 @@ namespace Routine {
 
   //StartUP Routine
   void Sleep(){
+    CurrentRoutine = "Sleep";
     setEmoji(SLEEP);
     displayText("Felix:", "zZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZz");
   }
 
   //StartUP Routine
   void AwaitInput(){
+    CurrentRoutine = "AwaitInput";
     setEmoji(HAPPY);
     displayText("Felix:", "Bro, Please do something.");
   }
