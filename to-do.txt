@@ -1,0 +1,7 @@
+- loading sleep anim
+- sounds
+- menu for learning phase(settings)
+- background if no routine(temp, battery status, time) | interval change
+- LED effect on his head use on different states
+- random text/sounds
+- motivational speech between learning phase
