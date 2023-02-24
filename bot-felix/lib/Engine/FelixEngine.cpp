@@ -1,6 +1,22 @@
 #include <Setup.cpp>
 
 namespace Utility {
+  bool RegisterRoutine(int time, int (*routine)()){
+    unsigned long StartUp_time_now = millis();
+    while (true) {
+      routine();
+
+      if ((unsigned long)(millis() - StartUp_time_now) > time) {
+        break;
+      }
+    }
+    return true;
+  }
+
+  String getBatteryLevel() {
+    return String(Battery.getBatteryChargeLevel());
+  }
+
   bool isBotSleeping() {
     return readTilt(PIN_tilt);
   }
@@ -93,6 +109,32 @@ namespace ComponentsUtility{
 namespace Routine {
 
   //StartUP Routine
+  bool StartUp(int time){
+    bool startUP_isDone = false;
+    if (!startUP_isDone) {
+      unsigned long StartUp_time_now = millis();
+      while (true) {
+        setEmoji(SMILE);
+        int timeNow = millis();
+        if ((unsigned long)(millis() - timeNow) > 2000) {
+          displayText("Felix:", "Welcome!");
+        } else {
+          displayText("My Battery", "is at: "+ getBatteryLevel()+"%");
+        }
+        CurrentRoutine = "StartUp";
+
+        if ((unsigned long)(millis() - StartUp_time_now) > time) {
+          startUP_isDone = true;
+          break;
+        }
+      }
+      return false;
+    } else {
+      return true; 
+    }
+  }
+
+  //StartUP Routine
   String CurrentRoutine;
   bool startUP_isDone = false;
   bool StartUp(int time){
@@ -112,19 +154,5 @@ namespace Routine {
     } else {
       return true; 
     }
-  }
-
-  //StartUP Routine
-  void Sleep(){
-    CurrentRoutine = "Sleep";
-    setEmoji(SLEEP);
-    displayText("Felix:", "zZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZzzZz");
-  }
-
-  //StartUP Routine
-  void AwaitInput(){
-    CurrentRoutine = "AwaitInput";
-    setEmoji(HAPPY);
-    displayText("Felix:", "Bro, Please do something.");
   }
 }

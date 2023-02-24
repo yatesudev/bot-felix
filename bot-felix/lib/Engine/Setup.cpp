@@ -4,6 +4,7 @@
 #include <TimeManager.cpp>
 
 #include <TiltManager.cpp>
+#include <Pangodream_18650_CL.h>
 
 #include <vector>
 
@@ -22,6 +23,7 @@ const int PIN_rgbRed = 12;//11
 const int PIN_rgbGreen = 13;//10
 const int PIN_rgbBlue = 15;//9
 
+Pangodream_18650_CL Battery;
 
 void setup() {
   pinMode(PIN_buttonStart, INPUT);
