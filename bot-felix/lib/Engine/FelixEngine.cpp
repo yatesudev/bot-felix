@@ -107,7 +107,7 @@ namespace ComponentsUtility{
 }
 
 namespace Routine {
-
+  String CurrentRoutine = "";
   //StartUP Routine
   bool StartUp(int time){
     bool startUP_isDone = false;
@@ -135,9 +135,8 @@ namespace Routine {
   }
 
   //StartUP Routine
-  String CurrentRoutine;
   bool startUP_isDone = false;
-  bool StartUp(int time){
+  bool StartUpp(int time){
     if (!startUP_isDone) {
       unsigned long StartUp_time_now = millis();
       while (true) {
