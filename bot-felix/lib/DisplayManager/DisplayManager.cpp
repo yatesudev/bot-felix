@@ -1,6 +1,15 @@
 #include "DisplayManager.hpp"
 
+String CurrentHeader = "";
+String CurrentText = "";
+
 bool displayText(String Header, String longText){
+  if(CurrentHeader != Header || CurrentText != longText){
+    lcd.clear();
+    CurrentHeader = Header;
+    CurrentText = longText;
+  }
+
   if (currentString != longText) {
     StrLib_Clear_Scroll_LCD_Left();
     currentString = longText;

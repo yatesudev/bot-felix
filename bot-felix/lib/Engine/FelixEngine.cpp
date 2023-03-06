@@ -16,21 +16,45 @@ namespace Utility {
   String getBatteryLevel() {
     return String(Battery.getBatteryChargeLevel());
   }
+  
+  template<typename T,int N> 
+  int ArrayLength(T (&array)[N]) {
+    return sizeof(array) / sizeof(array[0]);
+  }
 
   bool isBotSleeping() {
     return readTilt(PIN_tilt);
   }
 
+  unsigned long time_now_LASTINPUT = millis();
+  unsigned long time_now_BUTTONRIGHT = millis();
   bool isButtonRightEarPressed() {
-    if(digitalRead(PIN_buttonRepeats) == HIGH){
-      return true;
+
+    if(digitalRead(PIN_buttonStart) == HIGH){
+      if ((unsigned long)(millis() - time_now_BUTTONRIGHT) > 1000) {
+        time_now_BUTTONRIGHT = millis();
+        time_now_LASTINPUT = millis();
+        return true;
+      }
     }
     return false;
   }
 
+  unsigned long time_now_BUTTONLEFT = millis();
   bool isButtonLeftEarPressed() {
-    if (digitalRead(PIN_buttonStart)== HIGH){
-     return true;
+    if(digitalRead(PIN_buttonRepeats) == HIGH){
+      if ((unsigned long)(millis() - time_now_BUTTONLEFT) > 1000) {
+        time_now_BUTTONLEFT = millis();
+        time_now_LASTINPUT = millis();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool lastInputHigherThan(int time) {
+    if ((unsigned long)(millis() - time_now_LASTINPUT) > time) {
+      return true;
     }
     return false;
   }
@@ -109,8 +133,8 @@ namespace ComponentsUtility{
 namespace Routine {
   String CurrentRoutine = "";
   //StartUP Routine
+  bool startUP_isDone = false;
   bool StartUp(int time){
-    bool startUP_isDone = false;
     if (!startUP_isDone) {
       unsigned long StartUp_time_now = millis();
       while (true) {
@@ -119,7 +143,7 @@ namespace Routine {
         if ((unsigned long)(millis() - timeNow) > 2000) {
           displayText("Felix:", "Welcome!");
         } else {
-          displayText("My Battery", "is at: "+ getBatteryLevel()+"%");
+          //displayText("My Battery", "is at: "+ getBatteryLevel()+"%");
         }
         CurrentRoutine = "StartUp";
 
@@ -127,27 +151,7 @@ namespace Routine {
           startUP_isDone = true;
           break;
         }
-      }
-      return false;
-    } else {
-      return true; 
-    }
-  }
-
-  //StartUP Routine
-  bool startUP_isDone = false;
-  bool StartUpp(int time){
-    if (!startUP_isDone) {
-      unsigned long StartUp_time_now = millis();
-      while (true) {
-        setEmoji(SMILE);
-        displayText("Felix:", "Yoooo!");
-        CurrentRoutine = "StartUp";
-
-        if ((unsigned long)(millis() - StartUp_time_now) > time) {
-          startUP_isDone = true;
-          break;
-        }
+        displayText("Felix:", String((unsigned long)(millis() - StartUp_time_now)));
       }
       return false;
     } else {

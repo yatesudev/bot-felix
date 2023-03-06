@@ -1,5 +1,22 @@
 #include "TimeManager.hpp"
 
+String getDateTimeString(){
+  DateTime now = rtc.now();
+  String dateTimeString = "";
+  dateTimeString += now.year();
+  dateTimeString += "-";
+  dateTimeString += now.month();
+  dateTimeString += "-";
+  dateTimeString += now.day();
+  dateTimeString += " ";
+  dateTimeString += now.hour();
+  dateTimeString += ":";
+  dateTimeString += now.minute();
+  dateTimeString += ":";
+  dateTimeString += now.second();
+  return dateTimeString;
+}
+
 bool LearnTimer(double learnTime, double breakTime){
   
 

@@ -1,22 +1,21 @@
 #include "TemperatureManager.hpp"
 
-bool guteTemperatur(){
-  unsigned long currentTime = millis();
-
-  if(currentTime - dht_previousTime > 500) {
-    float humidity = dht.readHumidity();
-    float temperature = dht.readTemperature();
-
-    if (isnan(humidity) || isnan(temperature)) {
-    Serial.println("Es konnten keine Daten vom DHT gelesen werden");
-    
-    }
-
-    Serial.print("Luftfeuchtigkeit: ");
-    Serial.println(humidity);
-    Serial.print("Temperatur: ");
-    Serial.println(temperature);
-  }
+float getTemperatureValue(){
+  float temp = dht.readTemperature();
   
-  return  (temperature <= 24 && temperature >= 16 && humidity <= 75);
+  if (isnan(temp)) {
+    Serial.println("Error: Unable to read Temperature data from DHT Sensor");  
+  }
+
+  return temp;
+}
+
+float getHumidityValue(){
+  float humidity = dht.readHumidity();
+
+  if (isnan(humidity)) {
+    Serial.println("Error: Unable to read Humidity data from DHT Sensor");  
+  }
+
+  return humidity;
 }
