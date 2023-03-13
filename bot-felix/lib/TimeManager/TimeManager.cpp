@@ -1,25 +1,33 @@
 #include "TimeManager.hpp"
 
 String getDateTimeString(){
+  if (! rtc.begin()) {
+    return "Couldn't find RTC";
+  }
+
   DateTime now = rtc.now();
   String dateTimeString = "";
-  dateTimeString += now.year();
-  dateTimeString += "-";
-  dateTimeString += now.month();
-  dateTimeString += "-";
-  dateTimeString += now.day();
-  dateTimeString += " ";
+  
+  if (now.hour() < 10) {
+    dateTimeString += "0";
+  }
+  
   dateTimeString += now.hour();
   dateTimeString += ":";
+  if (now.minute() < 10) {
+    dateTimeString += "0";
+  }
+
   dateTimeString += now.minute();
   dateTimeString += ":";
+  if (now.second() < 10) {
+    dateTimeString += "0";
+  }
   dateTimeString += now.second();
   return dateTimeString;
 }
 
 bool LearnTimer(double learnTime, double breakTime){
-  
-
   if (! rtc.begin()) {
     Serial.println("Couldn't find RTC");
     Serial.flush();
@@ -32,7 +40,7 @@ bool LearnTimer(double learnTime, double breakTime){
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
     // This line sets the RTC with an explicit date & time, for example to set
     // January 21, 2014 at 3am you would call:
-    // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
+    //rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
   }
 
   if(alte_stunde == -1 || alte_minute == -1 || alte_sekunde == -1){
@@ -41,9 +49,6 @@ bool LearnTimer(double learnTime, double breakTime){
     alte_minute = then.minute();
     alte_sekunde = then.second();
   }
-
-  
-
 
   DateTime now = rtc.now();
   neue_stunde = now.hour();
