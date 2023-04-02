@@ -124,7 +124,7 @@ namespace ComponentsUtility{
   }
 
   unsigned long GMB_time_now = millis();
-  String GMB_bodies[] = {"","","","","","","", "You can do it!", "You are the best!", "Keep it up!", "not much left!", "great Job!"};
+  String GMB_bodies[] = {"","","","","","","", "U can do it!", "U the best!", "Keep it up!", "not much left!", "great Job!"};
   int GMB_randomNumber = (rand() % ArrayLength(GMB_bodies));
   String GMB_randomString = "";
 
@@ -145,7 +145,7 @@ namespace ComponentsUtility{
   unsigned long SBE_time_now = millis();
   unsigned long SBE_oldTime = 0;
   int SBE_randomNumber = -1;
-  void SwitchBetweenEmojis(std::vector <emojiType> emojiArray,const int &time){
+  void SwitchBetweenEmojis(std::vector <emojiType> emojiArray, const int &time){
     if (SBE_randomNumber == -1) {
       SBE_randomNumber = (rand() % emojiArray.size());
     }
@@ -186,6 +186,7 @@ namespace Routine {
     if (!startUP_isDone) {
       unsigned long StartUp_time_now = millis();
       while (true) {
+        setRGB(0, 0, 25);
         setEmoji(SMILE);
         int timeNow = millis();
         if ((unsigned long)(millis() - timeNow) > 2000) {
@@ -257,6 +258,10 @@ namespace LearningPhase {
   }
 
   void SetupLearningPhase(int type) {
+    if (globalBreak == true) {
+      setRGB(0,25,0);
+    }
+
     if (type == 1) {
       Header = "Learn ";
       Body = String(repeatsCount) + " times";
@@ -290,9 +295,8 @@ namespace LearningPhase {
       }
 
       if (globalBreak == true) {
-        selectedType = currentType;
+        selectedType++;
         manageTimer::startTimeCounter(methodsLearnTime[methodNum][1]);
-        setRGB(25, 0, 0);
         globalBreak = false;
       }
 
@@ -300,7 +304,7 @@ namespace LearningPhase {
         //initialize section
         selectedType = currentType;
         manageTimer::startTimeCounter(methodsLearnTime[methodNum][0]);
-        setRGB(0, 25, 0);
+        setRGB(25, 0, 0);
       }   
 
       if (manageTimer::getTimeLeft() == 0) {
@@ -335,8 +339,10 @@ namespace LearningPhase {
         return;
       }
 
+      //
       Header = formatTimeToString(manageTimer::getTimeLeft());
       Body = ComponentsUtility::GenerateMotivationalBody();
+      ComponentsUtility::SwitchBetweenEmojis({HAPPY, SMILE, SLEEP}, 30000);
 
     }
   }
@@ -356,8 +362,6 @@ namespace BackgroundMenu {
   unsigned long time_UpdateScreen = millis();
 
   void SetupBackgroundMenu() {
-    
-
     ComponentsUtility::SwitchBetweenEmojis({HAPPY, SMILE, SLEEP}, 6000);
     if ((unsigned long)(millis() - time_UpdateScreen) > 3000) {
 

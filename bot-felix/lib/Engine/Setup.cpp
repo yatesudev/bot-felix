@@ -5,7 +5,6 @@
 #include <TiltManager.cpp>
 #include <Pangodream_18650_CL.h>
 #include <vector>
-#include <SoundManager.cpp>
 
 //#include <Wire.h>
 //#include <Adafruit_GFX.h>
