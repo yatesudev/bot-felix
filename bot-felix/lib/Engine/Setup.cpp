@@ -6,29 +6,27 @@
 #include <Pangodream_18650_CL.h>
 #include <vector>
 
-//#include <Wire.h>
-//#include <Adafruit_GFX.h>
 
 //pins
-const int PIN_buttonStart = 32;//2
-const int PIN_buttonRepeats = 33;//3
+const int PIN_buttonStart =   32;
+const int PIN_buttonRepeats = 33;
 
-const int PIN_tilt = 37;//7
+const int          PIN_tilt = 37;
 
-const int PIN_dht = 26;//5
+const int           PIN_dht = 26;
 
-const int PIN_rgbRed = 12;//11
-const int PIN_rgbGreen = 13;//10
-const int PIN_rgbBlue = 15;//9
+const int        PIN_rgbRed = 12;
+const int      PIN_rgbGreen = 13;
+const int       PIN_rgbBlue = 15;
 
-const int PIN_speaker = 17;
+const int       PIN_speaker = 17;
 
 Pangodream_18650_CL Battery;
 
-    // This line sets the RTC with an explicit date & time, for example to set
-    // January 21, 2014 at 3am you would call:
-    //rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
-
+/**
+* Setup ->
+* OI
+*/
 void setup() {
 
   pinMode(PIN_buttonStart, INPUT);

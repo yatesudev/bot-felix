@@ -6,33 +6,33 @@ using namespace Utility;
 
 bool notifyTempState = false;
 
+
 void loop() {
 
-
-  Routine::StartUp(5000); /*<< synchronous routine using milis(), once done, it will return true and won't be repeated.*/
+  Routine::StartUp(5000); /*<< synchronous routine using milis(), once done, it will return true and won't be repeated.  */
 
   //sleeping case
   if (isBotSleeping()) {
-    setEmoji(SLEEP);
+    //Setup your own Sleeping methods using our Docs Function here!
     return;
   } 
 
 
   if (!isBotSleeping() && isCurrentlyLearning) {
     if (!notifyTempState && !isTempAndHumOk()) {
-      setRGB(80, 0, 0);
-      displayText("Warning!", "" + String((int) getTemperatureValue()) + " C " + " | " + String((int) getHumidityValue())+"%");
+      //Setup your method to display that the Temperature and Humidity in the room is not good for learning! (Values editable in Engine.cpp)
+
       notifyTempState = true;
       delay(3000);
     } else if (notifyTempState && isTempAndHumOk()) {
+      //Setup your method to display that the Temperature and Humidity in the room is back to Normal!
+
       notifyTempState = false;
-      setRGB(0, 80, 0);
-      displayText("Info!", "" + String((int) getTemperatureValue()) + " C " + " | " + String((int) getHumidityValue())+"%");
       delay(3000);
     }
   }
 
-  //background Menu
+  //background Menu -> Checks if the Input buttons were pressed, if not it turns on the Background Menu which you can configure in Engine.cpp!
   if (lastInputHigherThan(10000) && !isCurrentlyLearning) {
     BackgroundMenu::SetupBackgroundMenu();
     isButtonLeftEarPressed();
@@ -41,7 +41,12 @@ void loop() {
     return;
   }
 
-  //button pressed 
+  /*
+  *
+  **/
+  
+  //**button pressed Event -> If the left button is pressed we increment the currentType value which defines the Menu you choose.
+  
   if (isButtonLeftEarPressed()) {
     currentType++;
     if (currentType > maxTypes) {
@@ -55,3 +60,6 @@ void loop() {
   displayText(Header,  Body); //from LearningPhase -> FelixEngine.cpp
   SetupLearningPhase(currentType); //from LearningPhase -> FelixEngine.cpp
 }
+
+
+
