@@ -10,6 +10,13 @@ namespace ComponentsUtility{
   //SWITCH BETWEEN DIALOG TEXT
   unsigned long SBDT_time_now = millis();
   unsigned long SBDT_oldTime = 0;
+  
+  /**
+ * @brief Switches between dialog texts.
+ * @param Header The header text for the dialog.
+ * @param textArray The array of dialog texts.
+ * @param time The time interval for switching dialogs.
+ */
   void SwitchBetweenDialogText(String Header, std::vector <String> textArray,const int &time){
     if (((unsigned long)(millis() - SBDT_time_now) > time) || (SBDT_oldTime != SBDT_time_now)) { //switches if time is over or if the time is reset
       SBDT_time_now = millis();
@@ -23,7 +30,11 @@ namespace ComponentsUtility{
   String GMB_bodies[] = {"","","","","","","", "U can do it!", "U the best!", "Keep it up!", "not much left!", "great Job!"};
   int GMB_randomNumber = (rand() % ArrayLength(GMB_bodies));
   String GMB_randomString = "";
-
+  
+  /**
+ * @brief Generates a motivational body string.
+ * @return The motivational body string.
+ */
   String GenerateMotivationalBody() {
     if (globalBreak) {
       return "take a break";
@@ -41,6 +52,12 @@ namespace ComponentsUtility{
   unsigned long SBE_time_now = millis();
   unsigned long SBE_oldTime = 0;
   int SBE_randomNumber = -1;
+  
+  /**
+ * @brief Switches between emojis.
+ * @param emojiArray The array of emojis.
+ * @param time The time interval for switching emojis.
+ */
   void SwitchBetweenEmojis(std::vector <emojiType> emojiArray, const int &time){
     if (SBE_randomNumber == -1) {
       SBE_randomNumber = (rand() % emojiArray.size());
