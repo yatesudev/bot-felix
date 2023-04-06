@@ -1,9 +1,19 @@
+/**
+ * @file ComponentsUtility.cpp
+ * @brief Utility functions for managing components in a routine
+ */
 #include <ComponentsUtility.cpp>
 
 namespace Routine {
   String CurrentRoutine = "";
   //StartUP Routine
   bool startUP_isDone = false;
+  
+    /**
+   * @brief StartUp routine function
+   * @param time Time for the routine to run
+   * @return Returns true if the routine is done, false otherwise
+   */
   bool StartUp(int time){
     if (!startUP_isDone) {
       unsigned long StartUp_time_now = millis();
@@ -54,14 +64,23 @@ namespace LearningPhase {
     unsigned long time_start = 0;
 
     unsigned long displayTime = 0;
-
+    
+    
+    /**
+     * @brief Start time counter
+     * @param time Time for the timer
+     */
     void startTimeCounter(int time) {
       time_length = (time*60)*1000; //(time[0]  * 10000) - 5*60*1000;
 
       time_start = millis();
       time_current = millis();
     }
-
+    
+      /**
+     * @brief Get time left on the timer
+     * @return Time left on the timer in seconds
+     */
     int getTimeLeft() {
       time_current = millis();
       if (time_current - time_start > time_length) {
@@ -76,7 +95,11 @@ namespace LearningPhase {
       return displayTime / 1000;
     }
   }
-
+  
+    /**
+   * @brief Setup Learning Phase
+   * @param type Type of learning phase
+   */
   void SetupLearningPhase(int type) {
 
     if (type == 1) {
@@ -198,7 +221,19 @@ namespace BackgroundMenu {
   String bg_bat = String(getBatteryLevel()) + " %";
 
   unsigned long time_UpdateScreen = millis();
-
+  
+  /**
+ * @brief Set up the BackgroundMenu with updated background information.
+ *
+ * This function updates the background information displayed in the BackgroundMenu
+ * by switching between different backgrounds and displaying the corresponding
+ * information on the screen. It uses variables and functions such as `Header`, `Body`,
+ * `currentBackground`, `backgrounds[]`, `bg_temp`, `bg_hum`, `bg_bat`, `time_UpdateScreen`,
+ * `Utility::ArrayLength()`, `getTemperatureValue()`, `getHumidityValue()`,
+ * `getBatteryLevel()`, `getDateTimeString()`, and `displayText()`.
+ *
+ * @return None
+ */
   void SetupBackgroundMenu() {
     ComponentsUtility::SwitchBetweenEmojis({HAPPY, SMILE, SLEEP}, 6000);
     if ((unsigned long)(millis() - time_UpdateScreen) > 3000) {
