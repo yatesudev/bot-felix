@@ -21,7 +21,7 @@ const int PIN_rgbRed = 12;//11
 const int PIN_rgbGreen = 13;//10
 const int PIN_rgbBlue = 15;//9
 
-const int PIN_speaker = 21;
+const int PIN_speaker = 17;
 
 Pangodream_18650_CL Battery;
 
