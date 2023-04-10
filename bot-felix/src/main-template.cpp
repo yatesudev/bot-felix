@@ -8,31 +8,45 @@ bool notifyTempState = false;
 
 
 void loop() {
+  
+  /**
+  * StartMethode, rechnet bis 5000.
+  */
+  Routine::StartUp(5000); /*<< Asynchrone funktion, welche nach dem Ablauf nicht mehr wiederholt wird. */
 
-  Routine::StartUp(5000); /*<< synchronous routine using milis(), once done, it will return true and won't be repeated.  */
-
-  //sleeping case
+  /**
+  * Methode welche aufgerufen wird, wenn der Bot seitlich hingelegt wurde.
+  */
   if (isBotSleeping()) {
-    //Setup your own Sleeping methods using our Docs Function here!
+    //Trage hier die Funktionalität vom  ein!
     return;
   } 
 
 
+  /**
+  * Methode welche aufgerufen wird, wenn der Bot lernt und nicht hingelegt wurde.
+  */
   if (!isBotSleeping() && isCurrentlyLearning) {
+      /**
+      * Methode welche aufgerufen wird, wenn der Bot gerade anfängt zu lernen und die Temepratur / Lufrfeuchtigkeit nicht in ordnung ist.
+      */
     if (!notifyTempState && !isTempAndHumOk()) {
-      //Setup your method to display that the Temperature and Humidity in the room is not good for learning! (Values editable in Engine.cpp)
+      //Trage hier funktionen ein, die aufgerufen werden wenn die Temepratur / Lufrfeuchtigkeit nicht in Ordnung ist
 
       notifyTempState = true;
       delay(3000);
     } else if (notifyTempState && isTempAndHumOk()) {
-      //Setup your method to display that the Temperature and Humidity in the room is back to Normal!
+      //Trage hier funktionen ein, die aufgerufen werden wenn die Temepratur / Lufrfeuchtigkeit wieder in Ordnung ist.
 
       notifyTempState = false;
       delay(3000);
     }
   }
 
-  //background Menu -> Checks if the Input buttons were pressed, if not it turns on the Background Menu which you can configure in Engine.cpp!
+  /**
+  * Methode welche prüft ob bei dem Bot buttons benutzt wurden, falls diese mehr als 10 sekunden (10000ms) betragen,
+  * und der Bot gerade nicht am lernen ist, wird das Background Menu aufgerufen.
+  */
   if (lastInputHigherThan(10000) && !isCurrentlyLearning) {
     BackgroundMenu::SetupBackgroundMenu();
     isButtonLeftEarPressed();
@@ -41,12 +55,11 @@ void loop() {
     return;
   }
 
-  /*
-  *
-  **/
-  
-  //**button pressed Event -> If the left button is pressed we increment the currentType value which defines the Menu you choose.
-  
+
+  /**
+  * Bei der betätigung des Linken ohr-buttons wird der Typ des menüs um 1 erhöht
+  * Diese Methode muss und sollte von dir nicht bearbeitet werden!
+  */ 
   if (isButtonLeftEarPressed()) {
     currentType++;
     if (currentType > maxTypes) {
@@ -56,10 +69,10 @@ void loop() {
     }
   }
 
-  //default if nothing else is true (= Learning)
-  displayText(Header,  Body); //from LearningPhase -> FelixEngine.cpp
-  SetupLearningPhase(currentType); //from LearningPhase -> FelixEngine.cpp
+  /**
+  * Methoden welche für die Lernphase benutzt werden. Diese wurden in der FelixEngine beschrieben und
+  * sollten von dir nicht verändert werden. Die logik befindet sich in /lib/Engine/FelixEngine.cpp
+  */
+  displayText(Header,  Body); //von LearningPhase -> FelixEngine.cpp
+  SetupLearningPhase(currentType); //von LearningPhase -> FelixEngine.cpp
 }
-
-
-
