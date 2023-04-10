@@ -7,19 +7,19 @@
 #include <vector>
 
 
-//pins
-const int PIN_buttonStart =   32;
-const int PIN_buttonRepeats = 33;
+//adjust your pin numbers
+const int PIN_buttonStart =   00; //left button
+const int PIN_buttonRepeats = 00; //right button
 
-const int          PIN_tilt = 37;
+const int          PIN_tilt = 00; //tilt sensor
 
-const int           PIN_dht = 26;
+const int           PIN_dht = 00; //temperatur sensor
 
-const int        PIN_rgbRed = 12;
-const int      PIN_rgbGreen = 13;
-const int       PIN_rgbBlue = 15;
+const int        PIN_rgbRed = 00; //rgb red
+const int      PIN_rgbGreen = 00; //rgb green
+const int       PIN_rgbBlue = 00; //rgb blue
 
-const int       PIN_speaker = 17;
+const int       PIN_speaker = 00; //buzzer
 
 Pangodream_18650_CL Battery;
 
