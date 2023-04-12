@@ -18,7 +18,7 @@ void loop() {
   * Methode welche aufgerufen wird, wenn der Bot seitlich hingelegt wurde.
   */
   if (isBotSleeping()) {
-    //Trage hier die Funktionalität vom  ein!
+    //Trage hier die Funktionen ein, die aufgerufen werden wenn der Bot schläft.
     return;
   } 
 
@@ -28,15 +28,15 @@ void loop() {
   */
   if (!isBotSleeping() && isCurrentlyLearning) {
       /**
-      * Methode welche aufgerufen wird, wenn der Bot gerade anfängt zu lernen und die Temepratur / Lufrfeuchtigkeit nicht in ordnung ist.
+      * Methode welche aufgerufen wird, wenn der Bot gerade anfängt zu lernen und die Temepratur / Luftfeuchtigkeit nicht in ordnung ist.
       */
     if (!notifyTempState && !isTempAndHumOk()) {
-      //Trage hier funktionen ein, die aufgerufen werden wenn die Temepratur / Lufrfeuchtigkeit nicht in Ordnung ist
+      //Trage hier Funktionen ein, die aufgerufen werden wenn die Temepratur / Lufrfeuchtigkeit nicht in Ordnung ist
 
       notifyTempState = true;
       delay(3000);
     } else if (notifyTempState && isTempAndHumOk()) {
-      //Trage hier funktionen ein, die aufgerufen werden wenn die Temepratur / Lufrfeuchtigkeit wieder in Ordnung ist.
+      //Trage hier Funktionen ein, die aufgerufen werden wenn die Temepratur / Lufrfeuchtigkeit wieder in Ordnung ist.
 
       notifyTempState = false;
       delay(3000);
