@@ -1,10 +1,11 @@
 # Felix Bot
 
 ## Overview
-<img src="felix_front.jpeg" alt="Felix Bot" width="300"/>
-<img src="felix_back.jpeg" alt="Felix Bot" width="300"/>
-
 **Felix Bot** is a project developed as part of the "Eingebettete Systeme" module. The project leverages the ESP32 microcontroller to create a versatile and interactive bot that can monitor environmental conditions, display information, and interact with users through various sensors and outputs.
+
+<img src="felix_front.jpeg" alt="Felix Bot" width="300"/>
+
+<img src="felix_back.jpeg" alt="Felix Bot" width="300"/>
 
 ## Features
 
