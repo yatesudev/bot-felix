@@ -1,5 +1,5 @@
 # Felix Bot
-<img src="felix_font.jpeg" alt="Felix Bot" width="300"/>
+<img src="felix_front.jpeg" alt="Felix Bot" width="300"/>
 <img src="felix_back.jpeg" alt="Felix Bot" width="300"/>
 ## Overview
 
