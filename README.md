@@ -41,7 +41,3 @@
     ```
 2. Navigate to the project directory and open the code in your preferred IDE.
 3. Connect your ESP32 and upload the code.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
