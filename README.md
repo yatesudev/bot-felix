@@ -1,7 +1,7 @@
-# Felix Bot
+# Bot Felix 
 
 ## Overview
-**Felix Bot** is a project developed as part of the "Embedded Systems" module. The project leverages the ESP32 microcontroller to create a versatile and interactive bot that can monitor environmental conditions, display information, and interact with users through various sensors and outputs.
+**Bot Felix** is a project developed as part of the "Embedded Systems" module. The project leverages the ESP32 microcontroller to create a versatile and interactive bot that can monitor environmental conditions, display information, and interact with users through various sensors and outputs.
 
 <img src="felix_front.jpeg" alt="Felix Bot" width="300"/>
 
